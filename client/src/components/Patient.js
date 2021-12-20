@@ -78,7 +78,7 @@ function Patient({ setUser, user }) {
               <Routes>
                   <Route path='/' element={<Dashboard />}></Route>
                   <Route path='/profile' element={<Profile />}></Route>
-                  <Route path='/newappt' element={<NewApt />}></Route>
+                  <Route path='/newappt' element={<NewApt user={user} />}></Route>
                   <Route path='/myappts' element={<UpcomingApt />}></Route>
                   <Route path='/alldoctors' element={<AllDoctors />}></Route>
               </Routes>

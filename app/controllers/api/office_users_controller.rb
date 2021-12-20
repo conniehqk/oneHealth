@@ -1,6 +1,11 @@
 class Api::OfficeUsersController < ApplicationController
     skip_before_action :authenticate_user
 
+    def index
+        users = OfficeUser.all
+        render json: users
+    end
+
     def show
         if session[:user_type]=="o" and current_user
             render json: current_user, status: :ok

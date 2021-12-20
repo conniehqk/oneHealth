@@ -6,8 +6,8 @@ const initialState = {
     error: null
   }
 
-export const getAppointments = createAsyncThunk(
-    '/appointments/getAppointments',
+export const addAppointments = createAsyncThunk(
+    '/appointments/addAppointments',
     async (apt,thunkAPI) => {
         const res = await fetch('/api/appointments',{
           method: "POST",
@@ -21,8 +21,8 @@ export const getAppointments = createAsyncThunk(
     return res
 })
 
-export const addAppointments = createAsyncThunk(
-  '/appointments/addAppointments',
+export const getAppointments = createAsyncThunk(
+  '/appointments/getAppointments',
   async (thunkAPI) => {
       const res = await fetch('/api/appointments').then(
       (data) => data.json()
