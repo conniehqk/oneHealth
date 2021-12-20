@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+#landing {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-image: url(./components/background.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+}
+
+#landingsocial {
+  float: right;
+  padding: 2rem;
+}
+
+#landingstuff {
+  position: relative;
+  top: 32%;
+  align-items: center;
+}
+
+#landingtext {
+  padding-top: 3rem;
+  white-space: nowrap;
+  overflow: hidden; 
+  font-family: 'Source Code Pro', monospace;  
+  font-size: 2vh;
+  color: black;
+  margin: 0 auto;
+}
+
+#landingbuttons {
+  padding: 2rem;
+}
+
+#landingtext {
+  animation: animated-text 2s steps(30,end) 1s 1 normal both;
+}
+
+/* text animation */
+
+@keyframes animated-text{
+  from{width: 0;}
+  to{width: 472px;}
+}
+
+#landingtitle {
+  font-family: 'Prompt', sans-serif;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  color: sienna;
+  font-size: 7vw;
+  cursor: pointer;
+}
+
+#landingtitle::before {
+  content: "OneHealth";
+  position: absolute;
+  color: transparent;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0,
+    transparent 2px,
+    rgb(211, 171, 98) 2px,
+    rgb(211, 171, 98) 4px
+  );
+  -webkit-background-clip: text;
+  top: 0px;
+  left: 0;
+  z-index: -1;
+  transition: 1s;
+}
+
+#landingtitle::after {
+  content: "OneHealth";
+  position: absolute;
+  color: transparent;
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 2px,
+    rgb(211, 171, 98) 2px,
+    rgb(211, 171, 98) 4px
+  );
+  -webkit-background-clip: text;
+  top: 0px;
+  left: 0px;
+  transition: 1s;
+}
+
+#landingtitle:hover:before {
+  top: 1rem;
+  left: 1rem;
+}
+
+#landingtitle:hover:after {
+  top: -1rem;
+  left: -1rem;
+} 
+
+#signform {
+  padding: 4rem;
+  height: 100%;
+  background-color: darkgoldenrod;
+  max-width: 23rem;
+}
+
+#signform #submit {
+  float: right;
+  color: rgb(253, 235, 174);
+  border: 1px solid rgb(253, 235, 174);
+  margin-top: 1rem;
+}
+
+#signformtext {
+  font-family: 'Kalam', cursive;
+  font-size: 23px;
+  background-image: linear-gradient(179deg,rgb(253, 235, 174) 0%, rgb(253, 235, 174) 50%,transparent 54%, transparent 100%);
+  background-position: left 0% bottom 10%;
+  background-size:  100% 15%;
+  background-repeat: repeat-x;
+}
+
+#signformfooter {
+  position: fixed;
+	bottom: 0;
+	background-color: darkgoldenrod;
+  margin-bottom: 2rem;
+}
+
+#signupdob {
+  margin-top: 0.5rem;
+}
+
+#signupdob input {
+  height: 0.8rem;
+}
+
+.dbbody {
+  background-color: #FAFAFC;
+  display: flex;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.sidebar {
+  width: 380px;
+  background-image: linear-gradient(
+    #FCBD78,
+    #FF65C3
+  );
+  background-size: 200%;
+  background-position: 0 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translateX(-305px);
+  transition: 300ms ease-in-out;
+  z-index: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+  
+.sidebar--expanded {
+    background-size: 100%;
+    background-position: 0 0;
+    transform: translateX(0);
+  }
+
+#logo {
+  padding: 1rem;
+}
+
+#navcontent {
+  padding: 1rem;
+}
+
+#smallnav {
+  margin-left: 310px;
+}
+
+#largenav {
+  margin-left: 120px;
+}
+
+  
+.sidebar:hover {
+    background-position: 0 0;
+  }
+
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3% 4rem;
+    margin-left: 4.5rem;
+    transition: 300ms ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+.main-content--expanded {
+  margin-left: 17.5rem;
+}
+
+.main-content header {
+    height: 5rem;
+    width: 98%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0 2rem;
+  }
+  
+.main-content header span {
+    height: 1rem;
+    background: transparent;
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+}
+  
+
+    
+.main-content:last-child {
+    margin-right: 0;
+}
+  
+.main-content .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+  
+.main-content .module--full {
+    width: 100%;
+    height: 400px;
+    box-shadow: 0 3px 8px rgba(lightgray, 0.1), 0 6px 7px rgba(lightgray, 0.1);
+    background: white;
+}
+  
+.main-content .module-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+  
+.main-content .module--half {
+    flex: 1;
+    height: 400px;
+    box-shadow: 0 3px 8px rgba(lightgray, 0.1), 0 6px 7px rgba(lightgray, 0.1);
+    background: white;
+}
+.main-content:first-child {
+  margin-right: 1rem;
+}
+  
+/* .shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 360px;
+    background: linear-gradient(#FF7DD5 80%, transparent);
+    height: 370px;
+    border-radius: 100%;
+    margin-left: -100px;
+    margin-top: -20px;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(.4) translateY(-400px) translateX(300px);
+    margin-left: 0;
+    margin-top: 0;
+    transition: 400ms ease;
+} */
+/* .shape:nth-child(2) {
+      background: linear-gradient(#FCBD78 80%, transparent);
+      margin-top: 70px;
+      margin-left: 50px;
+      transform: scale(.4) translateY(-400px);
+      margin-top: 0;
+    } */
+    
+.sidebar--expanded {
+      /* animation: float 6s infinite alternate; */
+      margin-left: -110px;
+      /* margin-top: -20px; */
+      opacity: .8;
+      transform: scale(1) translateY(0);
+}
+.sidebar--expanded:nth-child(2) {
+      animation: float 20s infinite alternate;
+        transform: scale(1) translateY(100px) translateX(170px);
+      }
+
+
+.main-content .page-module {
+    width: 100%;
+    margin-right: 2rem;
+    align-items: center;
+    text-align: center;
+}
+  
+  @keyframes float {
+    20% {
+      top: 0;
+      left: -100px;
+    }
+    50% {
+      left: 0;
+    }
+    100% {
+      top: 500px;
+      left: -100px;
+    }
+  }
+
+  
