@@ -354,6 +354,22 @@
   border: none;
   padding: 2rem;
 }
+
+#allappts {
+  text-align: center;
+  max-height: 600px;
+}
+
+#allappts .ul {
+  height: 600px;
+}
+
+#apptcard {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
   
   @keyframes float {
     20% {

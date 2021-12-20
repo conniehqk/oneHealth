@@ -1,30 +1,22 @@
 import { Button, Stack, Menu, MenuItem} from "@mui/material"
 import { useState, useEffect } from "react";
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
-import { useSelector, useDispatch } from "react-redux";
-import { getAppointments } from "../features/appointment/appointmentsSlice"
 import { Routes, Route, Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
 import NewApt from "./NewApt";
-import UpcomingApt from "./UpcomingApt";
+import AllPtApt from "./AllPtApt";
 import AllDoctors from "./AllDoctors";
 
 function Patient({ setUser, user }) {
   const [expanded, setExpanded] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null);
-  const appointments = useSelector((state)=> state.appointment.data)
-  const dispatch = useDispatch()
-  const open = Boolean(anchorEl);
+
   function handleLogout() {
       fetch("/api/logout", { method: "DELETE" }).then((r) => {
         if (r.ok) {
           setUser(null);
         }
       })}
-  useEffect(()=>{
-    dispatch(getAppointments())
-  }, [])
 
 
     return (
@@ -79,7 +71,7 @@ function Patient({ setUser, user }) {
                   <Route path='/' element={<Dashboard />}></Route>
                   <Route path='/profile' element={<Profile />}></Route>
                   <Route path='/newappt' element={<NewApt user={user} />}></Route>
-                  <Route path='/myappts' element={<UpcomingApt />}></Route>
+                  <Route path='/myappts' element={<AllPtApt />}></Route>
                   <Route path='/alldoctors' element={<AllDoctors />}></Route>
               </Routes>
             </div>

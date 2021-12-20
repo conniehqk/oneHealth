@@ -4,6 +4,7 @@ class CreateOfficeUsers < ActiveRecord::Migration[6.1]
       t.string :full_name
       t.string :email
       t.string :password_digest
+      t.string :image
       t.string :phone
       t.string :title
       t.string :specialization

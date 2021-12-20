@@ -21,6 +21,17 @@ export const addAppointments = createAsyncThunk(
     return res
 })
 
+export const deleteAppointments = createAsyncThunk(
+  '/appointments/deleteAppointments',
+  async (id) => {
+      const res = await fetch(`/api/appointments/${id}`,{
+        method: "DELETE",
+      }).then(
+      (data) => data.json()
+  )
+  return res
+})
+
 export const getAppointments = createAsyncThunk(
   '/appointments/getAppointments',
   async (thunkAPI) => {
@@ -53,6 +64,16 @@ export const appointmentsSlice = createSlice({
           state.data.push(payload)
         },
         [addAppointments.rejected]: (state) => {
+          state.loading = false
+        },
+        [deleteAppointments.pending]: (state) => {
+          state.loading = true
+        },
+        [deleteAppointments.fulfilled]: (state, { payload }) => {
+          state.loading = false
+          state.data = state.data.filter(({ id })=>id!==payload)
+        },
+        [deleteAppointments.rejected]: (state) => {
           state.loading = false
         },
       },
