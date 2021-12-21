@@ -2,9 +2,9 @@ import { Divider, Select, FormControl, InputLabel, MenuItem, Button, Modal,Box,A
 import { Calendar, Views, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getDoctors } from "../features/officeuser/officeusersSlice"
+import { getDoctors, docsSlectors } from "../features/officeuser/officeusersSlice"
 import { addAppointments } from "../features/appointment/appointmentsSlice"
 
 function NewApt({  user }) {
@@ -13,7 +13,8 @@ function NewApt({  user }) {
     const maxTime= new Date()
     maxTime.setHours(19,30,0)
     const localizer = momentLocalizer(moment)
-    const doctors = useSelector((state)=> state.officeuser.data)
+    const doctors = useSelector(docsSlectors.selectAll)
+    const onAddAppt = useCallback((obj)=>dispatch(addAppointments(obj)), [])
     const [blocked, setBlocked] = useState([])
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -22,7 +23,7 @@ function NewApt({  user }) {
     const [appt, setAppt] = useState({
         patient_user_id: user.id,
         office_user_id: -1,
-        title: `Appointment with ${user.full_name}`,
+        title: `Appointment with ${user.full_name} (${user.phone})`,
         start: "",
         end: "",
         confirmed: false,
@@ -54,10 +55,9 @@ function NewApt({  user }) {
     }
     
     function doctorsDisplay(docs) {
-        const filDocs = docs.filter(d=>{
+        return docs.filter(d=>{
             return (d.title=="MD"||d.title=="NP")
-        })
-        return filDocs.map(d=>{
+        }).map(d=>{
             return (<MenuItem key={d.id} value={d.id}>{d.full_name} - {d.specialization}</MenuItem>)
         })
     }
@@ -87,9 +87,9 @@ function NewApt({  user }) {
         }
         return events
     }
-
+    console.log(appt)
     function handleSubmit() {
-        dispatch(addAppointments(appt))
+        onAddAppt(appt)
         setApptConfirm(false)
         setSubmitSuccess(true)
     }
@@ -212,7 +212,7 @@ function NewApt({  user }) {
                         <p id="parent-modal-description">
                             {new Date(appt.start).toString().slice(0,25)} to {new Date(appt.end).toString().slice(0,25)}
                         </p>
-                        <Button onClick={handleSubmit} variant="outlined">Confirm</Button>
+                        <Button onClick={handleSubmit} variant="outlined">Confirm and Book!</Button>
                     </div>
                 </Box>
             </Modal>

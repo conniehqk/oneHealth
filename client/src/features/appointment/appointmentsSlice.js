@@ -1,14 +1,8 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
-
-const initialState = {
-    data: [],
-    status: 'idle',
-    error: null
-  }
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 
 export const addAppointments = createAsyncThunk(
     '/appointments/addAppointments',
-    async (apt,thunkAPI) => {
+    async (apt) => {
         const res = await fetch('/api/appointments',{
           method: "POST",
           headers: {
@@ -24,26 +18,41 @@ export const addAppointments = createAsyncThunk(
 export const deleteAppointments = createAsyncThunk(
   '/appointments/deleteAppointments',
   async (id) => {
-      const res = await fetch(`/api/appointments/${id}`,{
+      await fetch(`/api/appointments/${id}`,{
         method: "DELETE",
-      }).then(
-      (data) => data.json()
-  )
-  return res
+      })
+  return id
+})
+
+export const updateAppointments = createAsyncThunk(
+  '/appointments/updateAppointments',
+  async ({id,obj}) => {
+      await fetch(`/api/appointments/${id}`,{
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj)
+      })
+  return {id, changes: obj}
 })
 
 export const getAppointments = createAsyncThunk(
   '/appointments/getAppointments',
-  async (thunkAPI) => {
+  async () => {
       const res = await fetch('/api/appointments').then(
       (data) => data.json()
   )
   return res
 })
 
+const apptsAdapter = createEntityAdapter({
+  selectId: (appointment) => appointment.id,
+})
+
 export const appointmentsSlice = createSlice({
     name: "appointments",
-    initialState,
+    initialState: apptsAdapter.getInitialState({ loading: false }),
     reducer: {},
     extraReducers: {
         [getAppointments.pending]: (state) => {
@@ -51,36 +60,51 @@ export const appointmentsSlice = createSlice({
         },
         [getAppointments.fulfilled]: (state, { payload }) => {
           state.loading = false
-          state.data = payload
+          apptsAdapter.setAll(state, payload)
         },
-        [getAppointments.rejected]: (state) => {
+        [getAppointments.rejected]: (state, { error }) => {
           state.loading = false
+          state.error = error
         },
         [addAppointments.pending]: (state) => {
           state.loading = true
         },
         [addAppointments.fulfilled]: (state, { payload }) => {
           state.loading = false
-          state.data.push(payload)
+          apptsAdapter.addOne(state, payload)
         },
-        [addAppointments.rejected]: (state) => {
+        [addAppointments.rejected]: (state, { error }) => {
           state.loading = false
+          state.error = error
         },
         [deleteAppointments.pending]: (state) => {
           state.loading = true
         },
-        [deleteAppointments.fulfilled]: (state, { payload }) => {
+        [deleteAppointments.fulfilled]: (state, { payload: id }) => {
           state.loading = false
-          state.data = state.data.filter(({ id })=>id!==payload)
+          apptsAdapter.removeOne(state, id)
         },
-        [deleteAppointments.rejected]: (state) => {
+        [deleteAppointments.rejected]: (state, { error }) => {
           state.loading = false
+          state.error = error
+        },
+        [updateAppointments.pending]: (state) => {
+          state.loading = true
+        },
+        [updateAppointments.fulfilled]: (state, { payload }) => {
+          state.loading = false
+          apptsAdapter.updateOne(state,{
+            id: payload.id,
+            changes: payload.changes,
+          })
+        },
+        [updateAppointments.rejected]: (state, { error }) => {
+          state.loading = false
+          state.error = error
         },
       },
 })
 
-export const { appointmentAdded, appointmentUpdated, appointmentDeleted } = appointmentsSlice.actions
+export const apptsSlectors = apptsAdapter.getSelectors(state=>state.appointment)
 
 export default appointmentsSlice.reducer
-
-export const selectAllAppointments = state => state.appointments

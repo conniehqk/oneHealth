@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
     data: [],
-    status: 'idle',
+    loading: true,
     error: null
   }
 
@@ -42,8 +42,9 @@ export const profileSlice = createSlice({
           state.loading = false
           state.data = payload
         },
-        [getProfile.rejected]: (state) => {
+        [getProfile.rejected]: (state, { error }) => {
           state.loading = false
+          state.error = error
         },
         [updateProfile.pending]: (state) => {
           state.loading = true
@@ -52,8 +53,9 @@ export const profileSlice = createSlice({
           state.loading = false
           state.data = payload
         },
-        [updateProfile.rejected]: (state) => {
+        [updateProfile.rejected]: (state, { error }) => {
           state.loading = false
+          state.error = error
         },
       },
 })

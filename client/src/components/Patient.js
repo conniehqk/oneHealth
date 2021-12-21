@@ -49,11 +49,11 @@ function Patient({ setUser, user }) {
                     My Appointments
                   </Link>
                 </Button>
-                <Button>
+                {/* <Button>
                   <Link  to="/alldoctors">
                     My Dcotors
                   </Link>
-                </Button>
+                </Button> */}
               </Stack>
             </div>:
             <div id="smallnav">

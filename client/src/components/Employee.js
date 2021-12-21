@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import { Routes, Route, Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
+import AllEmApt from "./AllEmApt";
 
 function Employee({ setUser, user }) {
     const [expanded, setExpanded] = useState(false)
@@ -12,7 +13,7 @@ function Employee({ setUser, user }) {
             setUser(null);
           }
         })}
-
+    console.log(user)
     return (
       <div className="dbbody">
       <div className={expanded ? "sidebar sidebar--expanded" : "sidebar"} onMouseEnter={()=>setExpanded(true)} onMouseLeave={()=>setExpanded(false)} >
@@ -28,16 +29,7 @@ function Employee({ setUser, user }) {
                 Dashboard
               </Link>
             </Button>
-            <Button>
-              <Link to="/profile">
-                Profile
-              </Link>
-            </Button>
-            <Button>
-              <Link to="/newappt">
-                New Appointments
-              </Link>
-            </Button>
+
             <Button>
               <Link to="/myappts">
                 My Appointments
@@ -58,7 +50,7 @@ function Employee({ setUser, user }) {
           <div className="container">
             <Routes>
                 <Route path='/' element={<Dashboard />}></Route>
-
+                <Route path='/myappts' element={<AllEmApt />}></Route>
             </Routes>
           </div>
         </section>
