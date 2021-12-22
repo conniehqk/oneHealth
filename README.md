@@ -11,3 +11,4 @@ Open another command line prompt:
 ```bash
 npm start --prefix client
 ```
+(note: if error occur, try use earlier version of node, e.g.16)
