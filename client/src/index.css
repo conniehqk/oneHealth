@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 #landing {
   position: absolute;
@@ -390,6 +391,24 @@
 #db-box h1 {
   font-size: 2.8rem;
   margin-bottom: 0;
+}
+
+#db-box-button {
+  width: 10%;
+  border: 0.7px solid lightblue;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+}
+
+
+#profilecontent {
+  font-family: 'Montserrat', sans-serif;
+  font-size: larger;
+}
+
+#db-divider {
+  padding-top: 9rem;
 }
   
   @keyframes float {

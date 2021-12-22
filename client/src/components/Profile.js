@@ -1,4 +1,4 @@
-import { Divider, Grid, Fab, TextField, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material"
+import { Divider, Grid, Fab, TextField, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Alert } from "@mui/material"
 import EditIcon from '@mui/icons-material/Edit';
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,17 +27,21 @@ function Profile() {
            ...formInput, [name]:val
         })
     }
+    console.log(Object.values(profile).some(x=>x===null||x===""))
     console.log(formInput)
     return (
         <div className="page-module">
             <Divider><h2>Patient Profilie</h2></Divider>
+            {Object.values(profile).some(x=>x===null||x==="")?
+            <Alert severity="warning">Please complete your profile!</Alert>:null}
+            <p></p>
             {edit? 
             <>
             <Fab color="secondary" size="medium" aria-label="doneedit" onClick={handleProfileUpdate}>
                 <DoneIcon />
             </Fab>
             <h3>Basic Information</h3>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} id="profilecontent">
                 <Grid item xs={3}>
                 </Grid>
                 <Grid item xs={3}>
@@ -111,7 +115,7 @@ function Profile() {
                 </Grid>
             </Grid>
             <h3>Insurance</h3>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} id="profilecontent">
                 <Grid item xs={3}>
                 </Grid>
                 <Grid item xs={3}>
@@ -141,7 +145,7 @@ function Profile() {
                 <EditIcon />
             </Fab>
             <h3>Basic Information</h3>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} id="profilecontent">
                 <Grid item xs={3}>
                 </Grid>
                 <Grid item xs={3}>
@@ -174,7 +178,7 @@ function Profile() {
                 </Grid>
             </Grid>
             <h3>Insurance</h3>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} id="profilecontent">
                 <Grid item xs={3}>
                 </Grid>
                 <Grid item xs={3}>

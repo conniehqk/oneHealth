@@ -87,9 +87,10 @@ function NewApt({  user }) {
         }
         return events
     }
-    console.log(appt)
     function handleSubmit() {
         onAddAppt(appt)
+        const newBlocked = [...blocked] + [new Date(appt.start).toString()]
+        setBlocked(newBlocked)
         setApptConfirm(false)
         setSubmitSuccess(true)
     }

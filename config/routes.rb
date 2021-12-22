@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :appointments, only: [:index, :create, :destroy, :update]
     resources :patient_users, only: [:index, :show, :update]
-    resources :office_users, only: [:index]
+    resources :office_users, only: [:index, :update]
 
     patch "/patient_me/edit", to: "patient_users#update"
     get "/patient_me", to: "patient_users#show"

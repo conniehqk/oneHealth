@@ -16,6 +16,7 @@ function AllEmApt() {
         id: -1,
         charge: 0
     })
+    const [details, setDetails] = useState(false)
     function handleComplete(id) {
         setCompleted(true)
         setCompleteInfo({
@@ -61,7 +62,23 @@ function AllEmApt() {
                                     variant="text">
                                         <Button onClick={()=>onDelete(appt.id)} key="one">Cancel</Button>
                                         <Button onClick={()=>onPatch(appt.id, {"confirmed": true})} key="two">Confirm</Button>
+                                        <Button onClick={()=>setDetails(true)} key="two">Details</Button>
                                     </ButtonGroup>
+                                    <Modal
+                                        open={details}
+                                        onClose={()=>setDetails(false)}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                        >
+                                        <Box id="apptconfirm">
+                                            <div>
+                                                <h2 id="parent-modal-title">Patient: {appt.patient_user.full_name}</h2>
+                                                <p>Date of Birth: {appt.patient_user.dob}</p>
+                                                <p>Gender: {appt.patient_user.gender}</p>
+                                                <p>Phone: {appt.patient_user.phone}</p>
+                                            </div>
+                                        </Box>
+                                    </Modal>
                                 </ListItem>
                                 <Divider />
                             </div>
@@ -138,6 +155,7 @@ function AllEmApt() {
                     </div>
                 </Box>
             </Modal>
+            
         </>
     )
 }

@@ -25,9 +25,23 @@ class Api::OfficeUsersController < ApplicationController
         end
     end
 
+    def update
+        user = OfficeUser.find_by(id: params[:id])
+        if user
+            user.update(user_edit_params)
+            render json: user
+        else  
+            render json: "Doctor does not exist", status: :not_found 
+        end
+    end
+
     private
 
     def user_params
         params.permit(:email, :password, :password_confirmation, :name, :phone, :title, :specialization)
+    end
+
+    def user_edit_params
+        params.permit(:ratings)
     end
 end
