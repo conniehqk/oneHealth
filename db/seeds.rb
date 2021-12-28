@@ -33,7 +33,6 @@ OfficeUser.create(
     phone: "(641)937-4451",
     title: "MD",
     specialization: "Internal Medicine",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -45,7 +44,6 @@ OfficeUser.create(
     phone: "(337)269-4110",
     title: "MD",
     specialization: "Internal Medicine",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -57,7 +55,6 @@ OfficeUser.create(
     phone: "(213)356-2697",
     title: "MD",
     specialization: "Internal Medicine",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -69,7 +66,6 @@ OfficeUser.create(
     phone: "(551)900-9927",
     title: "MD",
     specialization: "Pediatrics",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -81,7 +77,6 @@ OfficeUser.create(
     phone: "(202)508-1727",
     title: "MD",
     specialization: "Internal Medicine",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -93,7 +88,6 @@ OfficeUser.create(
     phone: "(386)397-5610",
     title: "MD",
     specialization: "Pediatrics",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -105,7 +99,6 @@ OfficeUser.create(
     phone: "(228)271-9044",
     title: "MD",
     specialization: "Family Medicine",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -117,7 +110,6 @@ OfficeUser.create(
     phone: "(412)595-2974",
     title: "MD",
     specialization: "OB/GYN",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -129,7 +121,6 @@ OfficeUser.create(
     phone: "(631)672-2397",
     title: "MD",
     specialization: "OB/GYN",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -141,7 +132,6 @@ OfficeUser.create(
     phone: "(214)416-4239",
     title: "MD",
     specialization: "Oncology",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -153,7 +143,6 @@ OfficeUser.create(
     phone: "(630)895-3730",
     title: "MD",
     specialization: "Radiology",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -165,7 +154,6 @@ OfficeUser.create(
     phone: "(720)253-6963",
     title: "MD",
     specialization: "Psychiatry",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -177,7 +165,6 @@ OfficeUser.create(
     phone: "(734)904-8373",
     title: "MD",
     specialization: "Cardiology",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -189,7 +176,6 @@ OfficeUser.create(
     phone: "(657)238-1106",
     title: "MD",
     specialization: "Urology",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -201,7 +187,6 @@ OfficeUser.create(
     phone: "(443)458-1989",
     title: "NP",
     specialization: "Nurse Practitioner",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -213,7 +198,6 @@ OfficeUser.create(
     phone: "(737)777-1539",
     title: "NP",
     specialization: "Nurse Practitioner",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -225,7 +209,6 @@ OfficeUser.create(
     phone: "(671)989-9210",
     title: "PA",
     specialization: "Physician Assistant",
-    ratings: 0
 );
 
 OfficeUser.create(
@@ -237,7 +220,6 @@ OfficeUser.create(
     phone: "(508)568-9483",
     title: "",
     specialization: "Office Manager",
-    ratings: 0
 );
 
 puts "Done Seeding Items!";

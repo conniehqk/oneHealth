@@ -1,8 +1,8 @@
-import { Button, List, ListItem, ListItemAvatar, Avatar, Grid, ListItemText, Divider, ButtonGroup, Rating, Modal, Box, Snackbar } from '@mui/material';
+import { Button, List, ListItem, ListItemAvatar, Avatar, Grid, ListItemText, Divider, ButtonGroup, Rating, Modal, Box, Snackbar, TextField  } from '@mui/material';
 import { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAppointments, deleteAppointments, apptsSlectors } from "../features/appointment/appointmentsSlice"
-import { updateDoctors } from "../features/officeuser/officeusersSlice"
+import { getAppointments, deleteAppointments, updateAppointments, apptsSlectors } from "../features/appointment/appointmentsSlice"
+
 
 function AllPtApt() {
     const dispatch = useDispatch()
@@ -11,24 +11,25 @@ function AllPtApt() {
         dispatch(getAppointments())
       }, [])
     const onDelete = useCallback((id)=>dispatch(deleteAppointments(id)), [])
-    const onPatch = useCallback((id, obj)=>dispatch(updateDoctors({id, obj})), [])
-    const [docRate, setDocRate] = useState(-1)
+    const onPatch = useCallback((id, obj)=>dispatch(updateAppointments({id, obj})), [])
+    const [apptRate, setApptRate] = useState(-1)
     const [rateView, setRateView] = useState(false)
     const [rating, setRating] = useState(5)
+    const [review, setReview] = useState("")
     const [ratingSuccess, setRatingSuccess] = useState(false)
     function handleRating() {
-        onPatch(docRate, { 'ratings': rating })
+        onPatch(apptRate, { 'rating': rating, 'review': review })
         setRatingSuccess(true)
         setRateView(false)
     }
     return (
         <>
-            <Grid container spacing={3} id="allappts">
+            <Grid container  id="allappts">
                 <Grid item xs={4}>
                     <h3>Appointments Requested</h3>
                     <List sx={{maxHeight:700, overflow: 'auto', paddingRight:2}}>
                     {appointments.filter(
-                        appt=>{return appt.confirmed===false && appt.completed===false}
+                        appt=>{return appt.title!=='block' && appt.confirmed===false && appt.completed===false }
                         ).map(appt=>{
                         return (
                             <>
@@ -42,6 +43,7 @@ function AllPtApt() {
                                         <>
                                             <p>Start: {new Date(appt.start).toString().slice(0,25)}</p>
                                             <p>End: {new Date(appt.end).toString().slice(0,25)}</p>
+                                            <p>Reason for visit: {appt.description}</p>
                                         </>
                                     }
                                     />
@@ -98,8 +100,9 @@ function AllPtApt() {
                                     secondary={
                                         <>
                                             <p>Start: {new Date(appt.start).toString().slice(0,25)}</p>
-                                            <p>End: {new Date(appt.end).toString().slice(0,25)}</p>
                                             <p>Charge: ${appt.charge}</p>
+                                            <p>My rating: <Rating value={appt.rating} precision={0.5} readOnly /></p>
+                                            <p>My review: {appt.review? appt.review:"No review yet"}</p>
                                         </>
                                     }
                                     />
@@ -109,7 +112,7 @@ function AllPtApt() {
                                     >
                                         <Button key="one">Pay</Button>
                                         <Button onClick={()=>{
-                                            setDocRate(appt.office_user.id)
+                                            setApptRate(appt.id)
                                             setRateView(true)
                                         }} key="two">Rate</Button>
                                     </ButtonGroup>
@@ -129,9 +132,17 @@ function AllPtApt() {
                 >
                 <Box id="apptconfirm">
                     <div>
-                        <h2 id="parent-modal-title">Please rate this doctor:</h2>
+                        <h2 id="parent-modal-title">Please rate this visit:</h2>
                         <div>
                             <Rating onChange={(e)=>setRating(e.target.value)} name="half-rating" defaultValue={5} precision={0.5} />
+                        </div>
+                        <div>
+                            <TextField 
+                                label="Review"
+                                multiline
+                                rows={3}
+                                onChange={(e)=>{setReview(e.target.value)}}
+                                />
                         </div>
                         <Button onClick={handleRating} id="apptbtn" variant="outlined">Submit</Button>
                     </div>

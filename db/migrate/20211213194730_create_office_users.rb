@@ -8,7 +8,6 @@ class CreateOfficeUsers < ActiveRecord::Migration[6.1]
       t.string :phone
       t.string :title
       t.string :specialization
-      t.float :ratings
       t.timestamps
     end
   end

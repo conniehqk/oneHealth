@@ -355,6 +355,10 @@
   height: 620px;
 }
 
+#schedule {
+  width: 100%;
+}
+
 #apptbtn {
   margin-top: 1rem;
 }
@@ -372,7 +376,9 @@
 
 #allappts {
   text-align: center;
-  max-height: 600px;
+  max-height: 850px;
+  overflow: auto;
+  padding-right: 1rem;
 }
 
 

@@ -1,4 +1,4 @@
-import { Divider, Select, FormControl, InputLabel, MenuItem, Button, Modal,Box,Alert } from "@mui/material"
+import { Divider, Select, FormControl, InputLabel, MenuItem, Button, Modal,Box,Alert, TextField } from "@mui/material"
 import { Calendar, Views, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -29,7 +29,9 @@ function NewApt({  user }) {
         confirmed: false,
         completed:false,
         description: "",
-        charge: 0
+        charge: 0,
+        rating: 5,
+        review: ""
     })
     const [calShow, setCalShow] = useState(false)
     const [apptConfirm, setApptConfirm] = useState(false)
@@ -42,7 +44,7 @@ function NewApt({  user }) {
         })
         setApptConfirm(true)
     }
-
+    console.log(appt)
     function handleNext() {
         if (appt.office_user_id!==-1) {
             const curDoc = doctors.find(d=>{return d.id===appt.office_user_id})
@@ -213,7 +215,16 @@ function NewApt({  user }) {
                         <p id="parent-modal-description">
                             {new Date(appt.start).toString().slice(0,25)} to {new Date(appt.end).toString().slice(0,25)}
                         </p>
-                        <Button onClick={handleSubmit} variant="outlined">Confirm and Book!</Button>
+                        <div>
+                          <TextField 
+                              label="Reason for visit"
+                              fullWidth
+                              multiline
+                              rows={2}
+                              onChange={(e)=>{setAppt({ ...appt, ["description"]:e.target.value })}}
+                              />
+                        </div>
+                        <Button id="apptbtn" onClick={handleSubmit} variant="outlined">Confirm and Book!</Button>
                     </div>
                 </Box>
             </Modal>

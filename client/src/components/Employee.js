@@ -2,8 +2,9 @@ import { Button, Stack, Menu, MenuItem} from "@mui/material"
 import { useState, useEffect } from "react";
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import { Routes, Route, Link } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Edashboard from "./Edashboard";
 import AllEmApt from "./AllEmApt";
+import Schedule from "./Schedule";
 
 function Employee({ setUser, user }) {
     const [expanded, setExpanded] = useState(false)
@@ -35,6 +36,11 @@ function Employee({ setUser, user }) {
                 My Appointments
               </Link>
             </Button>
+            <Button>
+              <Link to="/myschedule">
+                My Schedule
+              </Link>
+            </Button>
           </Stack>
         </div>:
         <div id="smallnav">
@@ -49,8 +55,9 @@ function Employee({ setUser, user }) {
           </header>
           <div className="container">
             <Routes>
-                <Route path='/' element={<Dashboard />}></Route>
+                <Route path='/' element={<Edashboard />}></Route>
                 <Route path='/myappts' element={<AllEmApt />}></Route>
+                <Route path='/myschedule' element={<Schedule user={user} />}></Route>
             </Routes>
           </div>
         </section>

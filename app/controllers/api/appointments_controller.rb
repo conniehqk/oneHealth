@@ -37,7 +37,7 @@ class Api::AppointmentsController < ApplicationController
 
     def apt_params
         params.permit(:title, :start, :end, :patient_user_id, :office_user_id,
-        :confirmed, :completed, :description, :charge)
+        :confirmed, :completed, :description, :charge, :rating, :review)
     end
 
 end

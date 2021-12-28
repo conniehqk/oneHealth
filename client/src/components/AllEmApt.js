@@ -17,6 +17,7 @@ function AllEmApt() {
         charge: 0
     })
     const [details, setDetails] = useState(false)
+    const [patient, setPatient] = useState({})
     function handleComplete(id) {
         setCompleted(true)
         setCompleteInfo({
@@ -42,7 +43,7 @@ function AllEmApt() {
                     <h3>Appointments Requested</h3>
                     <List sx={{maxHeight:700, overflow: 'auto', paddingRight:2}}>
                     {appointments.filter(
-                        appt=>{return appt.confirmed===false && appt.completed===false}
+                        appt=>{return appt.title!=="block" && appt.confirmed===false && appt.completed===false }
                         ).map(appt=>{
                         return (
                             <div key={appt.id}>
@@ -52,7 +53,7 @@ function AllEmApt() {
                                     secondary={
                                         <>
                                             <p>Start: {new Date(appt.start).toString().slice(0,25)}</p>
-                                            <p>End: {new Date(appt.end).toString().slice(0,25)}</p>
+                                            <p>Reason for visit: {appt.description}</p>
                                         </>
                                     }
                                     />
@@ -62,7 +63,10 @@ function AllEmApt() {
                                     variant="text">
                                         <Button onClick={()=>onDelete(appt.id)} key="one">Cancel</Button>
                                         <Button onClick={()=>onPatch(appt.id, {"confirmed": true})} key="two">Confirm</Button>
-                                        <Button onClick={()=>setDetails(true)} key="two">Details</Button>
+                                        <Button onClick={()=>{
+                                            setDetails(true)
+                                            setPatient(appt.patient_user)
+                                            }} key="two">Details</Button>
                                     </ButtonGroup>
                                     <Modal
                                         open={details}
@@ -72,10 +76,10 @@ function AllEmApt() {
                                         >
                                         <Box id="apptconfirm">
                                             <div>
-                                                <h2 id="parent-modal-title">Patient: {appt.patient_user.full_name}</h2>
-                                                <p>Date of Birth: {appt.patient_user.dob}</p>
-                                                <p>Gender: {appt.patient_user.gender}</p>
-                                                <p>Phone: {appt.patient_user.phone}</p>
+                                                <h2 id="parent-modal-title">Patient: {patient.full_name}</h2>
+                                                <p>Date of Birth: {patient.dob}</p>
+                                                <p>Gender: {patient.gender}</p>
+                                                <p>Phone: {patient.phone}</p>
                                             </div>
                                         </Box>
                                     </Modal>
@@ -100,7 +104,7 @@ function AllEmApt() {
                                     secondary={
                                         <>
                                             <p>Start: {new Date(appt.start).toString().slice(0,25)}</p>
-                                            <p>End: {new Date(appt.end).toString().slice(0,25)}</p>
+                                            <p>Reason for visit: {appt.description}</p>
                                         </>
                                     }
                                     />

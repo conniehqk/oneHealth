@@ -10,6 +10,8 @@ class CreateAppointments < ActiveRecord::Migration[6.1]
       t.boolean :completed
       t.text :description
       t.float :charge
+      t.float :rating
+      t.text :review
       t.timestamps
     end
   end
