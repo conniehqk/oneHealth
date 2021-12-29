@@ -1,5 +1,6 @@
 class Api::PatientUsersController < ApplicationController
     skip_before_action :authenticate_user
+    
 
     def index
         users = PatientUser.all
@@ -44,4 +45,5 @@ class Api::PatientUsersController < ApplicationController
     def user_edit_params
         params.permit(:gender, :full_name, :dob, :phone, :address, :insurance, :insurance_id)
     end
+
 end

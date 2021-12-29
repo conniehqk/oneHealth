@@ -1,5 +1,5 @@
-import { Button, Stack, Menu, MenuItem} from "@mui/material"
-import { useState, useEffect } from "react";
+import { Button, Stack } from "@mui/material"
+import { useState } from "react";
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import { Routes, Route, Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
@@ -29,28 +29,28 @@ function Patient({ setUser, user }) {
               </div>
               <Stack id="navcontent">
                 <h2> </h2>
-                <Button>
-                  <Link to="/">
+                <Button >
+                  <Link class="hvr-pulse-grow" to="/">
                     Dashboard
                   </Link>
                 </Button>
                 <Button>
-                  <Link to="/profile">
+                  <Link class="hvr-pulse-grow" to="/profile">
                     Patient Profile
                   </Link>
                 </Button>
                 <Button>
-                  <Link to="/newappt">
+                  <Link class="hvr-pulse-grow" to="/newappt">
                     New Appointments
                   </Link>
                 </Button>
                 <Button>
-                  <Link to="/myappts">
+                  <Link class="hvr-pulse-grow" to="/myappts">
                     My Appointments
                   </Link>
                 </Button>
                 <Button>
-                  <Link  to="/alldoctors">
+                  <Link  class="hvr-pulse-grow" to="/alldoctors">
                     My Dcotors
                   </Link>
                 </Button>

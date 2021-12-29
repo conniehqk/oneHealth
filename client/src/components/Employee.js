@@ -1,5 +1,5 @@
-import { Button, Stack, Menu, MenuItem} from "@mui/material"
-import { useState, useEffect } from "react";
+import { Button, Stack } from "@mui/material"
+import { useState } from "react";
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import { Routes, Route, Link } from "react-router-dom";
 import Edashboard from "./Edashboard";
@@ -26,18 +26,18 @@ function Employee({ setUser, user }) {
           <Stack id="navcontent">
             <h2> </h2>
             <Button>
-              <Link to="/">
+              <Link class="hvr-pulse-grow" to="/">
                 Dashboard
               </Link>
             </Button>
 
             <Button>
-              <Link to="/myappts">
+              <Link class="hvr-pulse-grow" to="/myappts">
                 My Appointments
               </Link>
             </Button>
             <Button>
-              <Link to="/myschedule">
+              <Link class="hvr-pulse-grow" to="/myschedule">
                 My Schedule
               </Link>
             </Button>

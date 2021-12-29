@@ -1,10 +1,11 @@
 import { Box,Stack,Divider } from "@mui/material"
-import { useEffect, useCallback } from "react";
+import { useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAppointments, apptsSlectors } from "../features/appointment/appointmentsSlice"
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import DateRangeIcon from '@mui/icons-material/DateRange';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import { Link } from "react-router-dom";
 
 function Dashboard() {
@@ -40,7 +41,9 @@ function Dashboard() {
                     <h3>Total Spending</h3>
                   </Box>
                   <Box id="db-box">
-                    <h1>${appointments.reduce((a,b)=>a+b.charge,0)}</h1>
+                    <h1>{new Date(appointments.filter(
+                        appt=>{return appt.confirmed===true && appt.completed===true}
+                        ).map(function(e) { return e.start }).sort().reverse()[0]).toLocaleDateString()}</h1>
                     <h3>Last Visit</h3>
                   </Box>
                 </Stack>
@@ -50,36 +53,30 @@ function Dashboard() {
             <div className="module-wrapper">
               <div className="module--full">
               <Stack direction="row">
-                  <Box 
-                  id="db-box-button" 
-                  sx={{'&:hover': {
-                    backgroundColor: 'primary.main',
-                    opacity: [0.9, 0.8, 0.7],
-                  },}}
-                  >
+                <Link id="db-box-button" class="hvr-bounce-in" to="/profile">
+                  <Box>
                     <AssignmentIndIcon sx={{ fontSize: 60 }} />
                     <h2>View/Edit Profile</h2>
                   </Box>
-                  <Box 
-                  id="db-box-button"
-                  sx={{'&:hover': {
-                    backgroundColor: 'primary.main',
-                    opacity: [0.9, 0.8, 0.7],
-                  },}}
-                  >
+                </Link>
+                <Link id="db-box-button" class="hvr-bounce-in" to="/newappt">
+                  <Box>
                     <ScheduleIcon sx={{ fontSize: 60 }} />
                     <h2>Schedule Appointment</h2>
                   </Box>
-                  <Box 
-                  id="db-box-button"
-                  sx={{'&:hover': {
-                    backgroundColor: 'primary.main',
-                    opacity: [0.9, 0.8, 0.7],
-                  },}}
-                  >
+                </Link>
+                <Link id="db-box-button" class="hvr-bounce-in" to="/myappts">
+                  <Box>
                     <DateRangeIcon sx={{ fontSize: 60 }} />
                     <h2>View All Appointment</h2>
                   </Box>
+                </Link>
+                <Link id="db-box-button" class="hvr-bounce-in" to="/alldoctors">
+                  <Box>
+                    <SupervisedUserCircleIcon sx={{ fontSize: 60 }} />
+                    <h2>View All Doctors</h2>
+                  </Box>
+                  </Link>
                 </Stack>
               </div>
             </div>

@@ -8,16 +8,16 @@ class PatientUser < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     validates :full_name, presence: true
     validates :phone, phone: { possible: true, allow_blank: true }
-    validates :password, presence: true, confirmation: true, length: { in: 10..40 },
-    :if => :password_validation_required?
-    validate :password_lower_case,
-    :if => :password_validation_required?
-    validate :password_uppercase,
-    :if => :password_validation_required?
-    validate :password_special_char,
-    :if => :password_validation_required?
-    validate :password_contains_number,
-    :if => :password_validation_required?
+    validates :password, presence: true, confirmation: true, length: { in: 10..40 }, on: :create
+    # if: :password_validation_required?
+    validate :password_lower_case, on: :create
+    # if: :password_validation_required?
+    validate :password_uppercase, on: :create
+    # if: :password_validation_required?
+    validate :password_special_char, on: :create
+    # if: :password_validation_required?
+    validate :password_contains_number, on: :create
+    # if: :password_validation_required?
     validate :validate_age
 
 

@@ -27,8 +27,7 @@ function Profile() {
            ...formInput, [name]:val
         })
     }
-    console.log(Object.values(profile).some(x=>x===null||x===""))
-    console.log(formInput)
+
     return (
         <div className="page-module">
             <Divider><h2>Patient Profilie</h2></Divider>
