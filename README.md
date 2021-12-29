@@ -1,25 +1,19 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# OneHealth
 
-Things you may want to cover:
+OneHealth is an appointment scheduling application for a made-up medical office.
 
-* Ruby version
+## Installation
+To see it in action, after clone:
+```bash
+bundle install
+rails s
+```
+Open another command line prompt:
+```bash
+npm install --prefix client
+npm start --prefix client
+```
+(note: if error occur, try use earlier version of node, e.g.16)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# oneHealth
+## Core Functionalities
