@@ -44,7 +44,7 @@ function NewApt({  user }) {
         })
         setApptConfirm(true)
     }
-    console.log(appt)
+
     function handleNext() {
         if (appt.office_user_id!==-1) {
             const curDoc = doctors.find(d=>{return d.id===appt.office_user_id})
