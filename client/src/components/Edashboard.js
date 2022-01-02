@@ -52,19 +52,19 @@ function Edashboard() {
             
             <div className="module-wrapper">
               <div className="module--full">
-              <Stack direction="row">
-                <Link id="db-box-button" class="hvr-bounce-in" to="/myappts">
-                  <Box>
-                    <DateRangeIcon sx={{ fontSize: 60 }} />
-                    <h2>View All Appointment</h2>
-                  </Box>
-                </Link>
-                <Link id="db-box-button" class="hvr-bounce-in" to="/myschedule">
-                  <Box>
-                    <ScheduleIcon sx={{ fontSize: 60 }} />
-                    <h2>View Schedule</h2>
-                  </Box>
-                </Link>
+                <Stack direction="row">
+                    <Link id="db-box-button" class="hvr-bounce-in" to="/myappts">
+                    <Box>
+                        <DateRangeIcon sx={{ fontSize: 60 }} />
+                        <h2>View All Appointment</h2>
+                    </Box>
+                    </Link>
+                    <Link id="db-box-button" class="hvr-bounce-in" to="/myschedule">
+                    <Box>
+                        <ScheduleIcon sx={{ fontSize: 60 }} />
+                        <h2>View Schedule</h2>
+                    </Box>
+                    </Link>
                 </Stack>
               </div>
             </div>
