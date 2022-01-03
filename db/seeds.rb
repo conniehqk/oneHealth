@@ -10,7 +10,7 @@ OfficeUser.destroy_all;
 
 PatientUser.destroy_all;
 
-(1..500).each do |id|
+(1..100).each do |id|
 PatientUser.create!(
     full_name: Faker::Name.name,
     email: Faker::Internet.email,
