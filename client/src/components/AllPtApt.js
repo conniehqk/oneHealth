@@ -2,7 +2,11 @@ import { Button, List, ListItem, ListItemAvatar, Avatar, Grid, ListItemText, Div
 import { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAppointments, deleteAppointments, updateAppointments, apptsSlectors } from "../features/appointment/appointmentsSlice"
+import { CardElement, ElementsConsumer } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
+const stripePromise = loadStripe("pk_live_51K0tRICrSmL0ujtERl9T1qCIEyYFfc6xdbYm0xcEX6O0UHrZWZWVocKCdRjbGtwXbFJL0bBm1JS7TTkuQtAwNVxa00Havyz2kS");
 
 function AllPtApt() {
     const dispatch = useDispatch()
@@ -14,6 +18,8 @@ function AllPtApt() {
     const onPatch = useCallback((id, obj)=>dispatch(updateAppointments({id, obj})), [])
     const [apptRate, setApptRate] = useState(-1)
     const [rateView, setRateView] = useState(false)
+    const [payView, setPayView] = useState(false)
+    const [payment, setPayment] = useState(0)
     const [rating, setRating] = useState(5)
     const [review, setReview] = useState("")
     const [ratingSuccess, setRatingSuccess] = useState(false)
@@ -22,6 +28,32 @@ function AllPtApt() {
         setRatingSuccess(true)
         setRateView(false)
     }
+    function handlePay(e) {
+        e.preventDefault()
+        console.log(payment)
+    }
+    const CARD_ELEMENT_OPTIONS = {
+        iconStyle: "solid",
+        hidePostalCode: true,
+        style: {
+          base: {
+            iconColor: "rgb(240, 57, 122)",
+            color: "rgb(240, 57, 122)",
+            fontSize: "16px",
+            fontFamily: '"Open Sans", sans-serif',
+            fontSmoothing: "antialiased",
+            "::placeholder": {
+              color: "#CFD7DF"
+            }
+          },
+          invalid: {
+            color: "#e5424d",
+            ":focus": {
+              color: "#303238"
+            }
+          }
+        }
+      };
     return (
         <>
             <Grid container  id="allappts">
@@ -110,7 +142,10 @@ function AllPtApt() {
                                         orientation="vertical"
                                         aria-label="vertical contained button group"
                                     >
-                                        <Button key="one">Pay</Button>
+                                        <Button onClick={()=>{
+                                            setPayment(appt.charge)
+                                            setPayView(true)
+                                        }} key="one">Pay</Button>
                                         <Button onClick={()=>{
                                             setApptRate(appt.id)
                                             setRateView(true)
@@ -139,12 +174,30 @@ function AllPtApt() {
                         <div>
                             <TextField 
                                 label="Review"
+                                fullWidth
                                 multiline
                                 rows={3}
                                 onChange={(e)=>{setReview(e.target.value)}}
                                 />
                         </div>
                         <Button onClick={handleRating} id="apptbtn" variant="outlined">Submit</Button>
+                    </div>
+                </Box>
+            </Modal>
+            <Modal
+                open={payView}
+                onClose={()=>setPayView(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                >
+                <Box id="apptconfirm">
+                    <div>
+                            <form onSubmit={handlePay}>
+                                <Elements stripe={stripePromise}>
+                                    <CardElement options={CARD_ELEMENT_OPTIONS} />
+                                </Elements>
+                                <Button type="submit" id="apptbtn" variant="outlined">Submit payment of ${payment}</Button>
+                            </form>
                     </div>
                 </Box>
             </Modal>
