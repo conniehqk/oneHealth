@@ -9,6 +9,7 @@ function AllDoctors() {
         dispatch(getDoctors())
       }, [])
     const doctors = useSelector(docsSlectors.selectAll)
+    console.log("yes")
     function DocDisplay() {
         return doctors.filter(d=>{
             return (d.title=="MD"||d.title=="NP")
