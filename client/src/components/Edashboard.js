@@ -20,19 +20,19 @@ function Edashboard() {
                 <Stack direction="row">
                   <Box id="db-box">
                     <h1>{appointments.filter(
-                        appt=>{return appt.confirmed===false && appt.completed===false}
+                        appt=>{return appt.title!=="block" && appt.confirmed===false && appt.completed===false}
                         ).length}</h1>
                     <h3>Appointment Requested</h3>
                   </Box>
                   <Box id="db-box">
                     <h1>{appointments.filter(
-                        appt=>{return appt.confirmed===true && appt.completed===false}
+                        appt=>{return appt.title!=="block" && appt.confirmed===true && appt.completed===false}
                         ).length}</h1>
                     <h3>Appointment In Progress</h3>
                   </Box>
                   <Box id="db-box">
                     <h1>{appointments.filter(
-                        appt=>{return appt.confirmed===true && appt.completed===true}
+                        appt=>{return appt.title!=="block" && appt.confirmed===true && appt.completed===true}
                         ).length}</h1>
                     <h3>Appointment Completed</h3>
                   </Box>
