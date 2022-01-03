@@ -64,7 +64,7 @@ function Schedule({ user }) {
         const newBlocked = blocked + [new Date(start).toString()]
         setBlocked(newBlocked)
         onAddAppt({
-            patient_user_id: 1500,
+            patient_user_id: 1,
             office_user_id: user.id,
             title: "block",
             start: start,

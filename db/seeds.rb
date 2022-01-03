@@ -10,6 +10,18 @@ OfficeUser.destroy_all;
 
 PatientUser.destroy_all;
 
+PatientUser.create!(
+    id: 1,
+    full_name: "test",
+    email: "test@gmail.com",
+    phone: "2124567893",
+    dob: Faker::Date.birthday(min_age: 16),
+    gender: Faker::Gender.binary_type,
+    address: Faker::Address.full_address,
+    password: "Password123@!",
+    password_confirmation: "Password123@!"
+)
+
 (1..100).each do |id|
 PatientUser.create!(
     full_name: Faker::Name.name,
